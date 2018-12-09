@@ -250,7 +250,7 @@ def find(db, match_time=False):
         "$match": {
             "total": {"$gt": 1}
         }
-    }])
+    }], allowDiskUse= True )
 
     if match_time:
         dups = (d for d in dups if same_time(d))
@@ -313,7 +313,7 @@ def display_duplicates(duplicates, db):
         def delete_picture_(file_name):
             return str(delete_picture(file_name, db))
 
-        app.run()
+        app.run(host='0.0.0.0',debug=True)
 
 
 def get_file_size(file_name):
